@@ -939,9 +939,9 @@ sub create_dumps {
 			info("Process " . $process->{mnemonic} . " (pid " . $process->{pid} . ") is no longer running. Abandoning dump collection.");
 			return;
 		}
+		
+		$self->generate_OS_dumps($process);
 	}
-
-	$self->generate_OS_dumps($process);
 }
 
 #----------------------------------------------------------------------------------#
@@ -1041,8 +1041,8 @@ sub generate_OS_dumps {
 
     	# Add another level of kill.  If the generation of the javacore has hung, then the 
     	# SIGABRT won't process, and we need to use the OS in order to generate a dump.
-    	info("Sending SIGXCPU (kill -24) to the java process to generate an OS dump");
-		$self->send_signal($process, 24);
+#    	info("Sending SIGXCPU (kill -24) to the java process to generate an OS dump");
+#		$self->send_signal($process, 24);
    	}
 }
 
